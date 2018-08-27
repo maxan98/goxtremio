@@ -34,3 +34,30 @@ func NewClientWithArgs(
 
 	return &Client{api}, nil
 }
+
+//GetXms returns XMS info
+func (c *Client) GetXms() (*xms.Xms, error) {
+	xmsResp, err := c.api.GetXms()
+	if err != nil {
+		return nil, err
+	}
+	return xmsResp.Content, nil
+}
+
+// GetClusters return list of all clusters
+func (c *Client) GetClusters() (Refs, error) {
+	clusters, err := c.api.GetClusters()
+	if err != nil {
+		return nil, err
+	}
+	return clusters.Clusters, nil
+}
+
+// GetCluster return info of specific clusters
+func (c *Client) GetCluster(id string) (*xms.Cluster, error) {
+	xmsResp, err := c.api.GetCluster(id)
+	if err != nil {
+		return nil, err
+	}
+	return xmsResp.Content, nil
+}

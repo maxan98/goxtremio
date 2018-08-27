@@ -15,8 +15,9 @@ func init() {
 }
 
 type Ref struct {
-	Href string `json:"href"`
-	Name string `json:"name"`
+	Href string     `json:"href"`
+	Name string     `json:"name"`
+        SysName string  `json:"sys-name"` 
 }
 
 type getVolumesResp struct {
@@ -89,6 +90,7 @@ type Volume struct {
 	UnalignedIoRatio      string          `json:"unaligned-io-ratio"`
 	RdIops                string          `json:"rd-iops"`
 	WrBw                  string          `json:"wr-bw"`
+        CreatedByExternalClient string        `json:"created-by-external-client,omitempty"`
 }
 type getVolumeResp struct {
 	Content *Volume `json:"content"`
@@ -220,6 +222,7 @@ type getInitiatorResp struct {
 }
 
 type Link struct {
+	GUID string `json:"guid"`
 	Href string `json:"href"`
 	Rel  string `json:"rel"`
 }
@@ -486,6 +489,55 @@ func (xms *XMS) GetISCSIPortal(id string, name string) (resp *getISCSIPortalResp
 	return resp, err
 }
 
+type Xms struct {
+        Version   string        `json:"version"`
+}
+
+type getXmsResp struct {
+	Content *Xms        `json:"content"`
+	Links   []struct {
+                GUID string `json:"guid"`
+		Href string `json:"href"`
+		Rel  string `json:"rel"`
+	} `json:"links"`
+}
+
+func (xms *XMS) GetXms() (resp *getXmsResp, err error) {
+	err = xms.query("GET", "/types/xms", "1", nil, nil, &resp)
+	return resp, err
+}
+
+type getClustersResp struct {
+	Clusters []*Ref `json:"clusters"`
+	Links   []struct {
+		Href string `json:"href"`
+		Rel  string `json:"rel"`
+	} `json:"links"`
+}
+
+func (xms *XMS) GetClusters() (resp *getClustersResp, err error) {
+	err = xms.query("GET", "/types/clusters", "", nil, nil, &resp)
+	return resp, err
+}
+
+type Cluster struct {
+        FreeUdSsdSpace   string        `json:"free-ud-ssd-space"`
+}
+
+type getClusterResp struct {
+	Content *Cluster        `json:"content"`
+	Links   []struct {
+                GUID string `json:"guid"`
+		Href string `json:"href"`
+		Rel  string `json:"rel"`
+	} `json:"links"`
+}
+
+func (xms *XMS) GetCluster(id string) (resp *getClusterResp, err error) {
+	err = xms.query("GET", "/types/clusters", id, nil, nil, &resp)
+	return resp, err
+}
+
 type getEventsResp struct {
 	Events []*Event `json:"events"`
 	Links  []struct {
@@ -606,6 +658,7 @@ type PostVolumesReq struct {
 	VolName         string      `json:"vol-name,omitempty"`
 	VolSize         int         `json:"vol-size"`
 	ParentFolderID  string      `json:"parent-folder-id,omitempty"`
+        CreatedByExternalClient string `json:"created-by-external-client,omitempty"`
 }
 
 type PostVolumesResp struct {
