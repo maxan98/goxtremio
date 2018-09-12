@@ -521,7 +521,8 @@ func (xms *XMS) GetClusters() (resp *getClustersResp, err error) {
 }
 
 type Cluster struct {
-        FreeUdSsdSpace   string        `json:"free-ud-ssd-space"`
+        FreeUdSsdSpace          string        `json:"free-ud-ssd-space"`
+        Name                    string        `json:"name"`
 }
 
 type getClusterResp struct {
@@ -535,6 +536,39 @@ type getClusterResp struct {
 
 func (xms *XMS) GetCluster(id string) (resp *getClusterResp, err error) {
 	err = xms.query("GET", "/types/clusters", id, nil, nil, &resp)
+	return resp, err
+}
+
+type getTargetsResp struct {
+	Targets []*Ref `json:"targets"`
+	Links   []struct {
+		Href string `json:"href"`
+		Rel  string `json:"rel"`
+	} `json:"links"`
+}
+
+func (xms *XMS) GetTargets() (resp *getTargetsResp, err error) {
+	err = xms.query("GET", "/types/targets", "", nil, nil, &resp)
+	return resp, err
+}
+
+type Target struct {
+        PortType        string          `json:"port-type"`
+        PortAddress     string          `json:"port-address"`
+        SysName         string          `json:"sys-name"`
+}
+
+type getTargetResp struct {
+	Content *Target        `json:"content"`
+	Links   []struct {
+                GUID string `json:"guid"`
+		Href string `json:"href"`
+		Rel  string `json:"rel"`
+	} `json:"links"`
+}
+
+func (xms *XMS) GetTarget(id string) (resp *getTargetResp, err error) {
+	err = xms.query("GET", "/types/targets", id, nil, nil, &resp)
 	return resp, err
 }
 

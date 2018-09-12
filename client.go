@@ -53,11 +53,29 @@ func (c *Client) GetClusters() (Refs, error) {
 	return clusters.Clusters, nil
 }
 
-// GetCluster return info of specific clusters
+// GetCluster return info of specific cluster
 func (c *Client) GetCluster(id string) (*xms.Cluster, error) {
 	xmsResp, err := c.api.GetCluster(id)
 	if err != nil {
 		return nil, err
 	}
 	return xmsResp.Content, nil
+}
+
+// GetTargets return list of all targets
+func (c *Client) GetTargets() (Refs, error) {
+	targets, err := c.api.GetTargets()
+	if err != nil {
+		return nil, err
+	}
+	return targets.Targets, nil
+}
+
+// GetTarget return info of specific target
+func (c *Client) GetTarget(id string) (*xms.Target, error) {
+	targetResp, err := c.api.GetTarget(id)
+	if err != nil {
+		return nil, err
+	}
+	return targetResp.Content, nil
 }
