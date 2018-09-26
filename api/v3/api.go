@@ -688,7 +688,7 @@ func (xms *XMS) GetSnapshot(id string, name string) (resp *getSnapshotResp, err 
 type PostVolumesReq struct {
 	AlignmentOffset int         `json:"alignment-offset,omitempty"`
 	LbSize          int         `json:"lb-size,omitempty"`
-	SysID           interface{} `json:"sys-id,omitempty"`
+	SysID           interface{} `json:"cluster-id,omitempty"`
 	VolName         string      `json:"vol-name,omitempty"`
 	VolSize         int         `json:"vol-size"`
 	ParentFolderID  string      `json:"parent-folder-id,omitempty"`
