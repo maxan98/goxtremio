@@ -710,6 +710,7 @@ func (xms *XMS) DeleteVolumes(id string, name string) (err error) {
 }
 
 type PostLunMapsReq struct {
+	SysID   interface{} `json:"cluster-id,omitempty"`
 	VolID   int    `json:"vol-id,omitempty"`
 	VolName string `json:"vol-name,omitempty"`
 	IgID    int    `json:"ig-id"`
