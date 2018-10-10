@@ -734,6 +734,7 @@ func (xms *XMS) DeleteLunMaps(id string, name string) (err error) {
 }
 
 type PostInitiatorsReq struct {
+	SysID				  interface{}	`json:"cluster-id,omitempty"`
 	IgID                              int    `json:"ig-id,omitempty"`
 	IgName                            string `json:"ig-name,omitempty"`
 	InitiatorName                     string `json:"initiator-name"`
@@ -757,6 +758,23 @@ func (xms *XMS) PostInitiators(req *PostInitiatorsReq) (resp *PostInitiatorsResp
 func (xms *XMS) DeleteInitiators(id string, name string) (err error) {
 	err = xms.query("DELETE", "/types/initiators", id, map[string]string{"name": name}, nil, nil)
 	return err
+}
+
+type PostInitiatorGroupsReq struct {
+	SysID           interface{}	`json:"cluster-id,omitempty"`
+	IgName		string		`json:"ig-name,omitempty"`
+	QoSEnabledMode	string		`json:"qos-enabled-mode,omitempty"`
+	QoSPolicyID	string		`json:"qos-policy-id,omitempty"`
+        CreatedByExternalClient string        `json:"created-by-external-client,omitempty"`
+}
+
+type PostInitiatorGroupsResp struct {
+	Links []Link `json:"links"`
+}
+
+func (xms *XMS) PostInitiatorGroups(req *PostInitiatorGroupsReq) (resp *PostInitiatorGroupsResp, err error) {
+	err = xms.query("POST", "/types/initiator-groups", "", nil, req, &resp)
+	return resp, err
 }
 
 type SnapListItem struct {

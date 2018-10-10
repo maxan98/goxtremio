@@ -3,6 +3,8 @@ package goxtremio
 import xms "github.com/emccode/goxtremio/api/v3"
 
 type InitiatorGroup xms.InitiatorGroup
+type NewInitiatorGroupOptions xms.PostInitiatorGroupsReq
+type NewInitiatorGroupResult *xms.PostInitiatorGroupsResp
 
 //GetInitiatorGroup returns a specific initiator by name or ID
 func (c *Client) GetInitiatorGroup(
@@ -23,3 +25,16 @@ func (c *Client) GetInitiatorGroups() (Refs, error) {
 	}
 	return ig.InitiatorGroups, nil
 }
+
+//NewInitiatorGroup creates an IG
+func (c *Client) NewInitiatorGroup(opts *NewInitiatorGroupOptions) (NewInitiatorGroupResult, error) {
+	req := xms.PostInitiatorGroupsReq(*opts)
+	res, err := c.api.PostInitiatorGroups(&req)
+	if err != nil {
+		return nil, err
+	}
+
+	nigr := NewInitiatorGroupResult(res)
+	return nigr, nil
+}
+
