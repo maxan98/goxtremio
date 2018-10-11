@@ -25,7 +25,16 @@ func (c *Client) GetInitiators() (Refs, error) {
 	return i.Initiators, nil
 }
 
-//NewInitiator creates a volume
+//GetInitiators returns a list of initiators
+func (c *Client) GetInitiatorsConnectivity() ([]*xms.InitiatorConnectivity, error) {
+	i, err := c.api.GetInitiatorsConnectivity()
+	if err != nil {
+		return nil, err
+	}
+	return i.Content, nil
+}
+
+//NewInitiator creates an initiator
 func (c *Client) NewInitiator(opts *NewInitiatorOptions) (NewInitiatorResult, error) {
 	req := xms.PostInitiatorsReq(*opts)
 	res, err := c.api.PostInitiators(&req)

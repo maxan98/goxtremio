@@ -299,6 +299,29 @@ func (xms *XMS) GetInitiatorGroup(id string, name string) (resp *getInitiatorGro
 	return resp, err
 }
 
+type InitiatorConnectivity struct {
+	Index			int           `json:"index"`
+	PortAddress		string        `json:"port-address"`
+	Name			string        `json:"name"`
+	TargetIDLlist		[][]interface{} `json:"target-list"`
+	NumConnectedTragets	int           `json:"num-of-conn-tars"`
+	SysID			[]interface{} `json:"sys-id"`
+        PortType		string        `json:"port-type"`
+}
+
+type getInitiatorsConnectivityResp struct {
+	Content []*InitiatorConnectivity `json:"content"`
+	Links           []struct {
+		Href string `json:"href"`
+		Rel  string `json:"rel"`
+	} `json:"links"`
+}
+
+func (xms *XMS) GetInitiatorsConnectivity() (resp *getInitiatorsConnectivityResp, err error) {
+	err = xms.query("GET", "/types/initiators-connectivity", "", nil, nil, &resp)
+	return resp, err
+}
+
 //figure out how to get initiator names - from events
 
 type getVolumeFoldersResp struct {
