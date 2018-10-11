@@ -79,3 +79,16 @@ func (c *Client) GetTarget(id string) (*xms.Target, error) {
 	}
 	return targetResp.Content, nil
 }
+
+// GetUserAccount return info of specific user
+func (c *Client) GetUserAccount(id string, name string) (*xms.UserAccount, error) {
+	user, err := c.api.GetUserAccount(id, name)
+	if err != nil {
+		return nil, err
+	}
+	return user.Content, nil
+}
+
+func (c *Client) NewUserAccount(req *xms.PostUserAccountReq) (*xms.PostUserAccountResp, error) {
+	return c.api.PostUserAccount(req)
+}

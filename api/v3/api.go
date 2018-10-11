@@ -708,6 +708,39 @@ func (xms *XMS) GetSnapshot(id string, name string) (resp *getSnapshotResp, err 
 	return resp, err
 }
 
+type UserAccount struct {
+	Index                 int           `json:"index"`
+}
+
+type getUserAccountResp struct {
+	Content *UserAccount `json:"content"`
+	Links []Link `json:"links"`
+}
+
+func (xms *XMS) GetUserAccount(id string, name string) (resp *getUserAccountResp, err error) {
+	if id == "" && name == "" {
+		return nil, ErrIdOrNameNotSpecified
+	}
+
+	err = xms.query("GET", "/types/user-accounts", id, map[string]string{"name": name}, nil, &resp)
+	return resp, err
+}
+
+type PostUserAccountReq struct {
+	Name		string `json:"usr-name"`
+	Password	string `json:"password"`
+	Role		string `json:"role"`
+}
+
+type PostUserAccountResp struct {
+	Links []Link `json:"links"`
+}
+
+func (xms *XMS) PostUserAccount(req *PostUserAccountReq) (resp *PostUserAccountResp, err error) {
+	err = xms.query("POST", "/types/user-accounts", "", nil, req, &resp)
+	return resp, err
+}
+
 type PostVolumesReq struct {
 	AlignmentOffset int         `json:"alignment-offset,omitempty"`
 	LbSize          int         `json:"lb-size,omitempty"`
