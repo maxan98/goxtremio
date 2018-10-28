@@ -769,7 +769,7 @@ type PostLunMapsReq struct {
 	SysID   interface{} `json:"cluster-id,omitempty"`
 	VolID   int    `json:"vol-id,omitempty"`
 	VolName string `json:"vol-name,omitempty"`
-	IgID    int    `json:"ig-id"`
+	IgID    interface{}    `json:"ig-id"`
 	Lun     int    `json:"lun,omitempty"`
 	TgID    int    `json:"tg-id,omitempty"`
 	TgName  string `json:"tg-name,omitempty"`
@@ -831,6 +831,17 @@ type PostInitiatorGroupsResp struct {
 func (xms *XMS) PostInitiatorGroups(req *PostInitiatorGroupsReq) (resp *PostInitiatorGroupsResp, err error) {
 	err = xms.query("POST", "/types/initiator-groups", "", nil, req, &resp)
 	return resp, err
+}
+
+type PutInitiatorGroupsReq struct {
+	IgName		string		`json:"new-name,omitempty"`
+	QoSEnabledMode	string		`json:"qos-enabled-mode,omitempty"`
+	QoSPolicyID	string		`json:"qos-policy-id,omitempty"`
+}
+
+func (xms *XMS) PutInitiatorGroup(id string, req *PutInitiatorGroupsReq) (err error) {
+	err = xms.query("PUT", "/types/initiator-groups", id, nil, req, nil)
+	return err
 }
 
 type SnapListItem struct {

@@ -5,6 +5,7 @@ import xms "github.com/emccode/goxtremio/api/v3"
 type InitiatorGroup xms.InitiatorGroup
 type NewInitiatorGroupOptions xms.PostInitiatorGroupsReq
 type NewInitiatorGroupResult *xms.PostInitiatorGroupsResp
+type ModifyInitiatorGroupOptions xms.PutInitiatorGroupsReq
 
 //GetInitiatorGroup returns a specific initiator by name or ID
 func (c *Client) GetInitiatorGroup(
@@ -38,3 +39,8 @@ func (c *Client) NewInitiatorGroup(opts *NewInitiatorGroupOptions) (NewInitiator
 	return nigr, nil
 }
 
+//Modify IG
+func (c *Client) ModifyInitiatorGroup(id string, opts *ModifyInitiatorGroupOptions) (err error) {
+	req := xms.PutInitiatorGroupsReq(*opts)
+	return c.api.PutInitiatorGroup(id, &req)
+}
