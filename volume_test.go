@@ -45,6 +45,19 @@ func TestNewVolume(*testing.T) {
 	fmt.Println(fmt.Sprintf("%+v", res))
 }
 
+func TestCloneVolume(*testing.T) {
+	req := &CloneVolumeOptions{}
+	req.FromVolumeList = make([][]interface{}, 1)
+	req.FromVolumeList[0] = make([]interface{}, 1)
+	req.FromVolumeList[0][0] = "6dd6a00379fd4d1c9930da477e70b86e"
+	res, err := c.CloneVolume(req)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(fmt.Sprintf("%+v", res))
+}
+
 func TestDeleteVolume(*testing.T) {
 	err := c.DeleteVolume("", "testing1")
 	if err != nil {

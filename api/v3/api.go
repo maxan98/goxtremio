@@ -765,6 +765,33 @@ func (xms *XMS) DeleteVolumes(id string, name string) (err error) {
 	return err
 }
 
+type VolumeCreateRepurposeCopyReq struct {
+	FromVolumeList		[][]interface{}	`json:"from-volume-list"`
+	SysID			interface{}	`json:"cluster-id,omitempty"`
+        CreatedByExternalClient	string		`json:"created-by-external-client,omitempty"`
+	ManagementLocked        string		`json:"management-locked,omitempty"`
+	NewVolSuffix		string		`json:"new-vol-suffix,omitempty"`
+	NewSnapshotSetName	string		`json:"new-snapshot-set-name,omitempty"`
+}
+
+type VolumeCreateRepurposeCopyResponseContent struct {
+	Volumes		[]Link	`json:"volumes"` 
+	SnapshotSet	Link	`json:"snapshot-set"` 
+}
+
+type VolumeCreateRepurposeCopyResp struct {
+	Content *VolumeCreateRepurposeCopyResponseContent `json:"content"`
+	Links   []struct {
+		Href string `json:"href"`
+		Rel  string `json:"rel"`
+	} `json:"links"`
+}
+
+func (xms *XMS) VolumeCreateRepurposeCopy(req *VolumeCreateRepurposeCopyReq) (resp *VolumeCreateRepurposeCopyResp, err error) {
+	err = xms.query("PUT", "/commands/volumes/create-repurpose-copy", "", nil, req, &resp)
+	return resp, err
+}
+
 type PostLunMapsReq struct {
 	SysID   interface{} `json:"cluster-id,omitempty"`
 	VolID   int    `json:"vol-id,omitempty"`
