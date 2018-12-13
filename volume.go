@@ -7,6 +7,7 @@ type NewVolumeOptions xms.PostVolumesReq
 type NewVolumeResult *xms.PostVolumesResp
 type CloneVolumeOptions xms.VolumeCreateRepurposeCopyReq
 type CloneVolumeResult *xms.VolumeCreateRepurposeCopyResponseContent
+type ModifyVolumeOptions xms.PutVolumeReq
 
 //GetVolume returns a specific volume by name or ID
 func (c *Client) GetVolume(id string, name string) (Volume, error) {
@@ -55,4 +56,10 @@ func (c *Client) CloneVolume(opts *CloneVolumeOptions) (CloneVolumeResult, error
 //DeleteVolume deletes a volume
 func (c *Client) DeleteVolume(id string, name string) error {
 	return c.api.DeleteVolumes(id, name)
+}
+
+//ModifyVolume update an existing volume
+func (c *Client) ModifyVolume(id string, name string, opts *ModifyVolumeOptions) (error) {
+	req := xms.PutVolumeReq(*opts)
+	return c.api.PutVolume(id, name, &req)
 }

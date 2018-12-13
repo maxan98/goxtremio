@@ -766,6 +766,22 @@ func (xms *XMS) DeleteVolumes(id string, name string) (err error) {
 	return err
 }
 
+type PutVolumeReq struct {
+	VolName         string      `json:"vol-name,omitempty"`
+	VolSize         int         `json:"vol-size,omitempty"`
+	QoSPolicyID     int		`json:"qos-policy-id,omitempty"`
+	RemoveQoSPolicy	string		`json:"remove-qos-policy,omitempty"`
+}
+
+func (xms *XMS) PutVolume(id string, name string, req *PutVolumeReq) (err error) {
+	if id == "" && name == "" {
+		return ErrIdOrNameNotSpecified
+	}
+
+	err = xms.query("PUT", "/types/volumes", id, map[string]string{"name": name}, req, nil)
+	return err
+}
+
 type VolumeCreateRepurposeCopyReq struct {
 	FromVolumeList		[][]interface{}	`json:"from-volume-list"`
 	SysID			interface{}	`json:"cluster-id,omitempty"`

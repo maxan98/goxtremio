@@ -58,6 +58,15 @@ func TestCloneVolume(*testing.T) {
 	fmt.Println(fmt.Sprintf("%+v", res))
 }
 
+func TestModifyVolume(*testing.T) {
+	req := &ModifyVolumeOptions{}
+	req.RemoveQoSPolicy = "true"
+	err := c.ModifyVolume("6dd6a00379fd4d1c9930da477e70b86e", "", req)
+	if err != nil {
+		panic(err)
+	}
+}
+
 func TestDeleteVolume(*testing.T) {
 	err := c.DeleteVolume("", "testing1")
 	if err != nil {
