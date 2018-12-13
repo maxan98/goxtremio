@@ -748,7 +748,8 @@ type PostVolumesReq struct {
 	VolName         string      `json:"vol-name,omitempty"`
 	VolSize         int         `json:"vol-size"`
 	ParentFolderID  string      `json:"parent-folder-id,omitempty"`
-        CreatedByExternalClient string `json:"created-by-external-client,omitempty"`
+        CreatedByExternalClient string	`json:"created-by-external-client,omitempty"`
+	QoSPolicyID     int		`json:"qos-policy-id,omitempty"`
 }
 
 type PostVolumesResp struct {
