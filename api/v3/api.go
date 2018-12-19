@@ -117,8 +117,8 @@ type getLunMapsResp struct {
 	} `json:"links"`
 }
 
-func (xms *XMS) GetLunMaps() (resp *getLunMapsResp, err error) {
-	err = xms.query("GET", "/types/lun-maps", "", nil, nil, &resp)
+func (xms *XMS) GetLunMaps(filter string) (resp *getLunMapsResp, err error) {
+	err = xms.query("GET", "/types/lun-maps", "", map[string]string{"filter": filter}, nil, &resp)
 	return resp, err
 }
 

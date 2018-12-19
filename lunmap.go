@@ -16,8 +16,8 @@ func (c *Client) GetLunMap(id string, name string) (LunMap, error) {
 }
 
 //GetLunMaps returns a list of lunMaps
-func (c *Client) GetLunMaps() (Refs, error) {
-	lunMaps, err := c.api.GetLunMaps()
+func (c *Client) GetLunMaps(filter string) (Refs, error) {
+	lunMaps, err := c.api.GetLunMaps(filter)
 	if err != nil {
 		return nil, err
 	}

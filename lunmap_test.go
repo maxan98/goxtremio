@@ -24,7 +24,7 @@ func TestGetLunMapByName(*testing.T) {
 }
 
 func TestGetLunMaps(*testing.T) {
-	volumes, err := c.GetLunMaps()
+	volumes, err := c.GetLunMaps("vol-index:eq:2")
 	if err != nil {
 		panic(err)
 	}
