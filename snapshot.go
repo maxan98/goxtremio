@@ -9,6 +9,8 @@ type Snapshot *xms.Snapshot
 type SnapListItems []*xms.SnapListItem
 type NewSnapshotOptions xms.PostSnapshotsReq
 type NewSnapshotResult *xms.PostSnapshotsResp
+type SnapshotVolumeOptions xms.VolumeCreateCopyReq
+type SnapshotVolumeResult *xms.VolumeCreateCopyResponseContent
 
 //GetSnapshot returns a specific snapshot by name or ID
 func (c *Client) GetSnapshot(id string, name string) (Snapshot, error) {
@@ -68,3 +70,14 @@ func (c *Client) NewSnapshot(opts *NewSnapshotOptions) (NewSnapshotResult, error
 func (c *Client) DeleteSnapshot(id string, name string) error {
 	return c.api.DeleteSnapshots(id, name)
 }
+
+//SnaphotVolume creates a snaphot (inside a snapset) from existing volume(s)
+func (c *Client) SnapshotVolume(opts *SnapshotVolumeOptions) (SnapshotVolumeResult, error) {
+	req := xms.VolumeCreateCopyReq(*opts)
+	resp, err := c.api.VolumeCreateProtectionCopy(&req)
+	if err != nil {
+		return nil, err
+	}
+	return resp.Content, nil
+}
+

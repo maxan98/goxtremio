@@ -90,6 +90,9 @@ type Volume struct {
 	UnalignedIoRatio      string          `json:"unaligned-io-ratio"`
 	RdIops                string          `json:"rd-iops"`
 	WrBw                  string          `json:"wr-bw"`
+	GUID                  string          `json:"guid"`
+	LastRefreshTime       string          `json:"last-refresh-time"`
+	VolType		      string          `json:"vol-type"`
         CreatedByExternalClient string        `json:"created-by-external-client,omitempty"`
 }
 type getVolumeResp struct {
@@ -105,7 +108,11 @@ func (xms *XMS) GetVolume(id string, name string) (resp *getVolumeResp, err erro
 		return nil, ErrIdOrNameNotSpecified
 	}
 
-	err = xms.query("GET", "/types/volumes", id, map[string]string{"name": name}, nil, &resp)
+	if id != "" && name != "" {
+		err = xms.query("GET", "/types/volumes", "", map[string]string{"name": name, "cluster-name": id}, nil, &resp)
+	} else {
+		err = xms.query("GET", "/types/volumes", id, map[string]string{"name": name}, nil, &resp)
+	}
 	return resp, err
 }
 
@@ -782,7 +789,14 @@ func (xms *XMS) PutVolume(id string, name string, req *PutVolumeReq) (err error)
 	return err
 }
 
-type VolumeCreateRepurposeCopyReq struct {
+type Item struct {
+	GUID	string	`json:"guid"`
+	Href	string	`json:"href"`
+	Index	int	`json:"index"`
+	Name	string	`json:"name"`
+}
+
+type VolumeCreateCopyReq struct {
 	FromVolumeList		[][]interface{}	`json:"from-volume-list"`
 	SysID			interface{}	`json:"cluster-id,omitempty"`
         CreatedByExternalClient	string		`json:"created-by-external-client,omitempty"`
@@ -791,21 +805,26 @@ type VolumeCreateRepurposeCopyReq struct {
 	NewSnapshotSetName	string		`json:"new-snapshot-set-name,omitempty"`
 }
 
-type VolumeCreateRepurposeCopyResponseContent struct {
-	Volumes		[]Link	`json:"volumes"` 
-	SnapshotSet	Link	`json:"snapshot-set"` 
+type VolumeCreateCopyResponseContent struct {
+	Volumes		[]Item	`json:"volumes"` 
+	SnapshotSet	Item	`json:"snapshot-set"` 
 }
 
-type VolumeCreateRepurposeCopyResp struct {
-	Content *VolumeCreateRepurposeCopyResponseContent `json:"content"`
+type VolumeCreateCopyResp struct {
+	Content *VolumeCreateCopyResponseContent `json:"content"`
 	Links   []struct {
 		Href string `json:"href"`
 		Rel  string `json:"rel"`
 	} `json:"links"`
 }
 
-func (xms *XMS) VolumeCreateRepurposeCopy(req *VolumeCreateRepurposeCopyReq) (resp *VolumeCreateRepurposeCopyResp, err error) {
+func (xms *XMS) VolumeCreateRepurposeCopy(req *VolumeCreateCopyReq) (resp *VolumeCreateCopyResp, err error) {
 	err = xms.query("PUT", "/commands/volumes/create-repurpose-copy", "", nil, req, &resp)
+	return resp, err
+}
+
+func (xms *XMS) VolumeCreateProtectionCopy(req *VolumeCreateCopyReq) (resp *VolumeCreateCopyResp, err error) {
+	err = xms.query("PUT", "/commands/volumes/create-protection-copy", "", nil, req, &resp)
 	return resp, err
 }
 

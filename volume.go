@@ -5,8 +5,8 @@ import xms "github.com/emccode/goxtremio/api/v3"
 type Volume *xms.Volume
 type NewVolumeOptions xms.PostVolumesReq
 type NewVolumeResult *xms.PostVolumesResp
-type CloneVolumeOptions xms.VolumeCreateRepurposeCopyReq
-type CloneVolumeResult *xms.VolumeCreateRepurposeCopyResponseContent
+type CloneVolumeOptions xms.VolumeCreateCopyReq
+type CloneVolumeResult *xms.VolumeCreateCopyResponseContent
 type ModifyVolumeOptions xms.PutVolumeReq
 
 //GetVolume returns a specific volume by name or ID
@@ -45,7 +45,7 @@ func (c *Client) NewVolume(opts *NewVolumeOptions) (NewVolumeResult, error) {
 
 //CloneVolume creates a volume from an existing volume
 func (c *Client) CloneVolume(opts *CloneVolumeOptions) (CloneVolumeResult, error) {
-	req := xms.VolumeCreateRepurposeCopyReq(*opts)
+	req := xms.VolumeCreateCopyReq(*opts)
 	resp, err := c.api.VolumeCreateRepurposeCopy(&req)
 	if err != nil {
 		return nil, err
