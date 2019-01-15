@@ -748,6 +748,25 @@ func (xms *XMS) PostUserAccount(req *PostUserAccountReq) (resp *PostUserAccountR
 	return resp, err
 }
 
+type PostQoSPolicyReq struct {
+	LimitType	string      `json:"limit-type"`
+	MaxBw		string      `json:"max-bw,omitempty"`
+	SysID           interface{} `json:"cluster-id,omitempty"`
+	QosPolicyName   string      `json:"qos-policy-name"`
+	MaxIOPS         int         `json:"max-iops,omitempty"`
+	BurstPercentage string      `json:"burst-percentage,omitempty"`
+        IoSize		string	    `json:"io-size,omitempty"`
+}
+
+type PostQoSPolicyResp struct {
+	Links []Link `json:"links"`
+}
+
+func (xms *XMS) PostQoSPolicy(req *PostQoSPolicyReq) (resp *PostQoSPolicyResp, err error) {
+	err = xms.query("POST", "/types/qos-policies", "", nil, req, &resp)
+	return resp, err
+}
+
 type PostVolumesReq struct {
 	AlignmentOffset int         `json:"alignment-offset,omitempty"`
 	LbSize          int         `json:"lb-size,omitempty"`

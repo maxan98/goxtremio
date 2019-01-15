@@ -92,3 +92,7 @@ func (c *Client) GetUserAccount(id string, name string) (*xms.UserAccount, error
 func (c *Client) NewUserAccount(req *xms.PostUserAccountReq) (*xms.PostUserAccountResp, error) {
 	return c.api.PostUserAccount(req)
 }
+
+func (c *Client) NewQoSPolicy(req *xms.PostQoSPolicyReq) (*xms.PostQoSPolicyResp, error) {
+	return c.api.PostQoSPolicy(req)
+}
