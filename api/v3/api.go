@@ -586,6 +586,7 @@ type Target struct {
         PortType        string          `json:"port-type"`
         PortAddress     string          `json:"port-address"`
         SysName         string          `json:"sys-name"`
+	PortalList      [][]interface{} `json:"portal-list"`
 }
 
 type getTargetResp struct {
