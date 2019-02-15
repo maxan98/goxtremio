@@ -15,9 +15,9 @@ func init() {
 }
 
 type Ref struct {
-	Href string     `json:"href"`
-	Name string     `json:"name"`
-        SysName string  `json:"sys-name"` 
+	Href    string `json:"href"`
+	Name    string `json:"name"`
+	SysName string `json:"sys-name"`
 }
 
 type getVolumesResp struct {
@@ -34,66 +34,67 @@ func (xms *XMS) GetVolumes() (resp *getVolumesResp, err error) {
 }
 
 type Volume struct {
-	UnalignedIoAlerts     string          `json:"unaligned-io-alerts"`
-	SmallIoAlerts         string          `json:"small-io-alerts"`
-	SmallIops             string          `json:"small-iops"`
-	DestSnapList          []interface{}   `json:"dest-snap-list"`
-	VolID                 []interface{}   `json:"vol-id"`
-	ObjSeverity           string          `json:"obj-severity"`
-	NumOfLunMappings      int             `json:"num-of-lun-mappings"`
-	UnalignedRdBw         string          `json:"unaligned-rd-bw"`
-	NumOfDestSnaps        int             `json:"num-of-dest-snaps"`
-	Iops                  string          `json:"iops"`
-	AccNumOfSmallWr       string          `json:"acc-num-of-small-wr"`
-	AlignmentOffset       int             `json:"alignment-offset"`
-	LbSize                int             `json:"lb-size"`
-	LogicalSpaceInUse     string          `json:"logical-space-in-use"`
-	UnalignedIoRatioLevel string          `json:"unaligned-io-ratio-level"`
-	AccNumOfRd            string          `json:"acc-num-of-rd"`
-	Index                 int             `json:"index"`
-	SmallRdBw             string          `json:"small-rd-bw"`
-	NaaName               string          `json:"naa-name"`
-	AccSizeOfWr           string          `json:"acc-size-of-wr"`
-	AccNumOfSmallRd       string          `json:"acc-num-of-small-rd"`
-	UnalignedRdIops       string          `json:"unaligned-rd-iops"`
-	WrLatency             string          `json:"wr-latency"`
-	SnapgrpID             []interface{}   `json:"snapgrp-id"`
-	AncestorVolID         []interface{}   `json:"ancestor-vol-id"`
-	VaaiTpAlerts          string          `json:"vaai-tp-alerts"`
-	CreationTime          string          `json:"creation-time"`
-	RdBw                  string          `json:"rd-bw"`
-	XmsID                 []interface{}   `json:"xms-id"`
-	Compressible          string          `json:"compressible"`
-	SmallWrBw             string          `json:"small-wr-bw"`
-	AccNumOfUnalignedRd   string          `json:"acc-num-of-unaligned-rd"`
-	LuName                string          `json:"lu-name"`
-	UnalignedIops         string          `json:"unaligned-iops"`
-	UnalignedBw           string          `json:"unaligned-bw"`
-	Bw                    string          `json:"bw"`
-	SmallIoRatioLevel     string          `json:"small-io-ratio-level"`
-	LunMappingList        [][]interface{} `json:"lun-mapping-list"`
-	VolSize               string          `json:"vol-size"`
-	WrIops                string          `json:"wr-iops"`
-	SysID                 []interface{}   `json:"sys-id"`
-	AvgLatency            string          `json:"avg-latency"`
-	RdLatency             string          `json:"rd-latency"`
-	SmallWrIops           string          `json:"small-wr-iops"`
-	SmallBw               string          `json:"small-bw"`
-	Name                  string          `json:"name"`
-	AccNumOfUnalignedWr   string          `json:"acc-num-of-unaligned-wr"`
-	UnalignedWrIops       string          `json:"unaligned-wr-iops"`
-	AccNumOfWr            string          `json:"acc-num-of-wr"`
-	SmallIoRatio          string          `json:"small-io-ratio"`
-	AccSizeOfRd           string          `json:"acc-size-of-rd"`
-	UnalignedWrBw         string          `json:"unaligned-wr-bw"`
-	SmallRdIops           string          `json:"small-rd-iops"`
-	UnalignedIoRatio      string          `json:"unaligned-io-ratio"`
-	RdIops                string          `json:"rd-iops"`
-	WrBw                  string          `json:"wr-bw"`
-	GUID                  string          `json:"guid"`
-	LastRefreshTime       string          `json:"last-refresh-time"`
-	VolType		      string          `json:"vol-type"`
-        CreatedByExternalClient string        `json:"created-by-external-client,omitempty"`
+	UnalignedIoAlerts       string          `json:"unaligned-io-alerts"`
+	SmallIoAlerts           string          `json:"small-io-alerts"`
+	SmallIops               string          `json:"small-iops"`
+	DestSnapList            []interface{}   `json:"dest-snap-list"`
+	VolID                   []interface{}   `json:"vol-id"`
+	ObjSeverity             string          `json:"obj-severity"`
+	NumOfLunMappings        int             `json:"num-of-lun-mappings"`
+	UnalignedRdBw           string          `json:"unaligned-rd-bw"`
+	NumOfDestSnaps          int             `json:"num-of-dest-snaps"`
+	Iops                    string          `json:"iops"`
+	AccNumOfSmallWr         string          `json:"acc-num-of-small-wr"`
+	AlignmentOffset         int             `json:"alignment-offset"`
+	LbSize                  int             `json:"lb-size"`
+	LogicalSpaceInUse       string          `json:"logical-space-in-use"`
+	UnalignedIoRatioLevel   string          `json:"unaligned-io-ratio-level"`
+	AccNumOfRd              string          `json:"acc-num-of-rd"`
+	Index                   int             `json:"index"`
+	SmallRdBw               string          `json:"small-rd-bw"`
+	NaaName                 string          `json:"naa-name"`
+	AccSizeOfWr             string          `json:"acc-size-of-wr"`
+	AccNumOfSmallRd         string          `json:"acc-num-of-small-rd"`
+	UnalignedRdIops         string          `json:"unaligned-rd-iops"`
+	WrLatency               string          `json:"wr-latency"`
+	SnapgrpID               []interface{}   `json:"snapgrp-id"`
+	AncestorVolID           []interface{}   `json:"ancestor-vol-id"`
+	VaaiTpAlerts            string          `json:"vaai-tp-alerts"`
+	CreationTime            string          `json:"creation-time"`
+	RdBw                    string          `json:"rd-bw"`
+	XmsID                   []interface{}   `json:"xms-id"`
+	Compressible            string          `json:"compressible"`
+	SmallWrBw               string          `json:"small-wr-bw"`
+	AccNumOfUnalignedRd     string          `json:"acc-num-of-unaligned-rd"`
+	LuName                  string          `json:"lu-name"`
+	UnalignedIops           string          `json:"unaligned-iops"`
+	UnalignedBw             string          `json:"unaligned-bw"`
+	Bw                      string          `json:"bw"`
+	SmallIoRatioLevel       string          `json:"small-io-ratio-level"`
+	LunMappingList          [][]interface{} `json:"lun-mapping-list"`
+	VolSize                 string          `json:"vol-size"`
+	WrIops                  string          `json:"wr-iops"`
+	SysID                   []interface{}   `json:"sys-id"`
+	AvgLatency              string          `json:"avg-latency"`
+	RdLatency               string          `json:"rd-latency"`
+	SmallWrIops             string          `json:"small-wr-iops"`
+	SmallBw                 string          `json:"small-bw"`
+	Name                    string          `json:"name"`
+	AccNumOfUnalignedWr     string          `json:"acc-num-of-unaligned-wr"`
+	UnalignedWrIops         string          `json:"unaligned-wr-iops"`
+	AccNumOfWr              string          `json:"acc-num-of-wr"`
+	SmallIoRatio            string          `json:"small-io-ratio"`
+	AccSizeOfRd             string          `json:"acc-size-of-rd"`
+	UnalignedWrBw           string          `json:"unaligned-wr-bw"`
+	SmallRdIops             string          `json:"small-rd-iops"`
+	UnalignedIoRatio        string          `json:"unaligned-io-ratio"`
+	RdIops                  string          `json:"rd-iops"`
+	WrBw                    string          `json:"wr-bw"`
+	GUID                    string          `json:"guid"`
+	LastRefreshTime         string          `json:"last-refresh-time"`
+	VolType                 string          `json:"vol-type"`
+	CreatedByExternalClient string          `json:"created-by-external-client,omitempty"`
+	QoSPolicyID             []interface{}   `json:"qos-policy-id,omitempty"`
 }
 type getVolumeResp struct {
 	Content *Volume `json:"content"`
@@ -307,18 +308,18 @@ func (xms *XMS) GetInitiatorGroup(id string, name string) (resp *getInitiatorGro
 }
 
 type InitiatorConnectivity struct {
-	Index			int           `json:"index"`
-	PortAddress		string        `json:"port-address"`
-	Name			string        `json:"name"`
-	TargetIDLlist		[][]interface{} `json:"target-list"`
-	NumConnectedTragets	int           `json:"num-of-conn-tars"`
-	SysID			[]interface{} `json:"sys-id"`
-        PortType		string        `json:"port-type"`
+	Index               int             `json:"index"`
+	PortAddress         string          `json:"port-address"`
+	Name                string          `json:"name"`
+	TargetIDLlist       [][]interface{} `json:"target-list"`
+	NumConnectedTragets int             `json:"num-of-conn-tars"`
+	SysID               []interface{}   `json:"sys-id"`
+	PortType            string          `json:"port-type"`
 }
 
 type getInitiatorsConnectivityResp struct {
 	Content []*InitiatorConnectivity `json:"content"`
-	Links           []struct {
+	Links   []struct {
 		Href string `json:"href"`
 		Rel  string `json:"rel"`
 	} `json:"links"`
@@ -520,13 +521,13 @@ func (xms *XMS) GetISCSIPortal(id string, name string) (resp *getISCSIPortalResp
 }
 
 type Xms struct {
-        Version   string        `json:"version"`
+	Version string `json:"version"`
 }
 
 type getXmsResp struct {
-	Content *Xms        `json:"content"`
+	Content *Xms `json:"content"`
 	Links   []struct {
-                GUID string `json:"guid"`
+		GUID string `json:"guid"`
 		Href string `json:"href"`
 		Rel  string `json:"rel"`
 	} `json:"links"`
@@ -539,7 +540,7 @@ func (xms *XMS) GetXms() (resp *getXmsResp, err error) {
 
 type getClustersResp struct {
 	Clusters []*Ref `json:"clusters"`
-	Links   []struct {
+	Links    []struct {
 		Href string `json:"href"`
 		Rel  string `json:"rel"`
 	} `json:"links"`
@@ -551,14 +552,14 @@ func (xms *XMS) GetClusters() (resp *getClustersResp, err error) {
 }
 
 type Cluster struct {
-        FreeUdSsdSpace          string        `json:"free-ud-ssd-space"`
-        Name                    string        `json:"name"`
+	FreeUdSsdSpace string `json:"free-ud-ssd-space"`
+	Name           string `json:"name"`
 }
 
 type getClusterResp struct {
-	Content *Cluster        `json:"content"`
+	Content *Cluster `json:"content"`
 	Links   []struct {
-                GUID string `json:"guid"`
+		GUID string `json:"guid"`
 		Href string `json:"href"`
 		Rel  string `json:"rel"`
 	} `json:"links"`
@@ -583,16 +584,16 @@ func (xms *XMS) GetTargets() (resp *getTargetsResp, err error) {
 }
 
 type Target struct {
-        PortType        string          `json:"port-type"`
-        PortAddress     string          `json:"port-address"`
-        SysName         string          `json:"sys-name"`
-	PortalList      [][]interface{} `json:"portal-list"`
+	PortType    string          `json:"port-type"`
+	PortAddress string          `json:"port-address"`
+	SysName     string          `json:"sys-name"`
+	PortalList  [][]interface{} `json:"portal-list"`
 }
 
 type getTargetResp struct {
-	Content *Target        `json:"content"`
+	Content *Target `json:"content"`
 	Links   []struct {
-                GUID string `json:"guid"`
+		GUID string `json:"guid"`
 		Href string `json:"href"`
 		Rel  string `json:"rel"`
 	} `json:"links"`
@@ -717,12 +718,12 @@ func (xms *XMS) GetSnapshot(id string, name string) (resp *getSnapshotResp, err 
 }
 
 type UserAccount struct {
-	Index                 int           `json:"index"`
+	Index int `json:"index"`
 }
 
 type getUserAccountResp struct {
 	Content *UserAccount `json:"content"`
-	Links []Link `json:"links"`
+	Links   []Link       `json:"links"`
 }
 
 func (xms *XMS) GetUserAccount(id string, name string) (resp *getUserAccountResp, err error) {
@@ -735,9 +736,9 @@ func (xms *XMS) GetUserAccount(id string, name string) (resp *getUserAccountResp
 }
 
 type PostUserAccountReq struct {
-	Name		string `json:"usr-name"`
-	Password	string `json:"password"`
-	Role		string `json:"role"`
+	Name     string `json:"usr-name"`
+	Password string `json:"password"`
+	Role     string `json:"role"`
 }
 
 type PostUserAccountResp struct {
@@ -750,13 +751,13 @@ func (xms *XMS) PostUserAccount(req *PostUserAccountReq) (resp *PostUserAccountR
 }
 
 type PostQoSPolicyReq struct {
-	LimitType	string      `json:"limit-type"`
-	MaxBw		string      `json:"max-bw,omitempty"`
+	LimitType       string      `json:"limit-type"`
+	MaxBw           string      `json:"max-bw,omitempty"`
 	SysID           interface{} `json:"cluster-id,omitempty"`
 	QosPolicyName   string      `json:"qos-policy-name"`
 	MaxIOPS         int         `json:"max-iops,omitempty"`
 	BurstPercentage string      `json:"burst-percentage,omitempty"`
-        IoSize		string	    `json:"io-size,omitempty"`
+	IoSize          string      `json:"io-size,omitempty"`
 }
 
 type PostQoSPolicyResp struct {
@@ -769,14 +770,14 @@ func (xms *XMS) PostQoSPolicy(req *PostQoSPolicyReq) (resp *PostQoSPolicyResp, e
 }
 
 type PostVolumesReq struct {
-	AlignmentOffset int         `json:"alignment-offset,omitempty"`
-	LbSize          int         `json:"lb-size,omitempty"`
-	SysID           interface{} `json:"cluster-id,omitempty"`
-	VolName         string      `json:"vol-name,omitempty"`
-	VolSize         int         `json:"vol-size"`
-	ParentFolderID  string      `json:"parent-folder-id,omitempty"`
-        CreatedByExternalClient string	`json:"created-by-external-client,omitempty"`
-	QoSPolicyID     int		`json:"qos-policy-id,omitempty"`
+	AlignmentOffset         int         `json:"alignment-offset,omitempty"`
+	LbSize                  int         `json:"lb-size,omitempty"`
+	SysID                   interface{} `json:"cluster-id,omitempty"`
+	VolName                 string      `json:"vol-name,omitempty"`
+	VolSize                 int         `json:"vol-size"`
+	ParentFolderID          string      `json:"parent-folder-id,omitempty"`
+	CreatedByExternalClient string      `json:"created-by-external-client,omitempty"`
+	QoSPolicyID             interface{} `json:"qos-policy-id,omitempty"`
 }
 
 type PostVolumesResp struct {
@@ -794,10 +795,10 @@ func (xms *XMS) DeleteVolumes(id string, name string) (err error) {
 }
 
 type PutVolumeReq struct {
-	VolName         string      `json:"vol-name,omitempty"`
-	VolSize         int         `json:"vol-size,omitempty"`
-	QoSPolicyID     int		`json:"qos-policy-id,omitempty"`
-	RemoveQoSPolicy	string		`json:"remove-qos-policy,omitempty"`
+	VolName         string `json:"vol-name,omitempty"`
+	VolSize         int    `json:"vol-size,omitempty"`
+	QoSPolicyID     int    `json:"qos-policy-id,omitempty"`
+	RemoveQoSPolicy string `json:"remove-qos-policy,omitempty"`
 }
 
 func (xms *XMS) PutVolume(id string, name string, req *PutVolumeReq) (err error) {
@@ -810,24 +811,24 @@ func (xms *XMS) PutVolume(id string, name string, req *PutVolumeReq) (err error)
 }
 
 type Item struct {
-	GUID	string	`json:"guid"`
-	Href	string	`json:"href"`
-	Index	int	`json:"index"`
-	Name	string	`json:"name"`
+	GUID  string `json:"guid"`
+	Href  string `json:"href"`
+	Index int    `json:"index"`
+	Name  string `json:"name"`
 }
 
 type VolumeCreateCopyReq struct {
-	FromVolumeList		[][]interface{}	`json:"from-volume-list"`
-	SysID			interface{}	`json:"cluster-id,omitempty"`
-        CreatedByExternalClient	string		`json:"created-by-external-client,omitempty"`
-	ManagementLocked        string		`json:"management-locked,omitempty"`
-	NewVolSuffix		string		`json:"new-vol-suffix,omitempty"`
-	NewSnapshotSetName	string		`json:"new-snapshot-set-name,omitempty"`
+	FromVolumeList          [][]interface{} `json:"from-volume-list"`
+	SysID                   interface{}     `json:"cluster-id,omitempty"`
+	CreatedByExternalClient string          `json:"created-by-external-client,omitempty"`
+	ManagementLocked        string          `json:"management-locked,omitempty"`
+	NewVolSuffix            string          `json:"new-vol-suffix,omitempty"`
+	NewSnapshotSetName      string          `json:"new-snapshot-set-name,omitempty"`
 }
 
 type VolumeCreateCopyResponseContent struct {
-	Volumes		[]Item	`json:"volumes"` 
-	SnapshotSet	Item	`json:"snapshot-set"` 
+	Volumes     []Item `json:"volumes"`
+	SnapshotSet Item   `json:"snapshot-set"`
 }
 
 type VolumeCreateCopyResp struct {
@@ -850,12 +851,12 @@ func (xms *XMS) VolumeCreateProtectionCopy(req *VolumeCreateCopyReq) (resp *Volu
 
 type PostLunMapsReq struct {
 	SysID   interface{} `json:"cluster-id,omitempty"`
-	VolID   int    `json:"vol-id,omitempty"`
-	VolName string `json:"vol-name,omitempty"`
-	IgID    interface{}    `json:"ig-id"`
-	Lun     int    `json:"lun,omitempty"`
-	TgID    int    `json:"tg-id,omitempty"`
-	TgName  string `json:"tg-name,omitempty"`
+	VolID   int         `json:"vol-id,omitempty"`
+	VolName string      `json:"vol-name,omitempty"`
+	IgID    interface{} `json:"ig-id"`
+	Lun     int         `json:"lun,omitempty"`
+	TgID    int         `json:"tg-id,omitempty"`
+	TgName  string      `json:"tg-name,omitempty"`
 }
 
 type PostLunMapsResp struct {
@@ -873,16 +874,16 @@ func (xms *XMS) DeleteLunMaps(id string, name string) (err error) {
 }
 
 type PostInitiatorsReq struct {
-	SysID				  interface{}	`json:"cluster-id,omitempty"`
-	IgID                              int    `json:"ig-id,omitempty"`
-	IgName                            string `json:"ig-name,omitempty"`
-	InitiatorName                     string `json:"initiator-name"`
-	PortAddress                       string `json:"port-address"`
-	InitiatorAuthenticationPassword   string `json:"initiator-authentication-password,omitempty"`
-	InitiatorAuthenticationUserName   string `json:"initiator-authentication-user-name,omitempty"`
-	InitiatorDiscoveryPassword        string `json:"initiator-discovery-password,omitempty"`
-	InitiatorDiscoveryUserName        string `json:"initiator-discovery-user-name,omitempty"`
-	InitiatorChapDiscoveryCredentials string `json:"initiator-chap-discovery-credentials,omitempty"`
+	SysID                             interface{} `json:"cluster-id,omitempty"`
+	IgID                              int         `json:"ig-id,omitempty"`
+	IgName                            string      `json:"ig-name,omitempty"`
+	InitiatorName                     string      `json:"initiator-name"`
+	PortAddress                       string      `json:"port-address"`
+	InitiatorAuthenticationPassword   string      `json:"initiator-authentication-password,omitempty"`
+	InitiatorAuthenticationUserName   string      `json:"initiator-authentication-user-name,omitempty"`
+	InitiatorDiscoveryPassword        string      `json:"initiator-discovery-password,omitempty"`
+	InitiatorDiscoveryUserName        string      `json:"initiator-discovery-user-name,omitempty"`
+	InitiatorChapDiscoveryCredentials string      `json:"initiator-chap-discovery-credentials,omitempty"`
 }
 
 type PostInitiatorsResp struct {
@@ -900,11 +901,11 @@ func (xms *XMS) DeleteInitiators(id string, name string) (err error) {
 }
 
 type PostInitiatorGroupsReq struct {
-	SysID           interface{}	`json:"cluster-id,omitempty"`
-	IgName		string		`json:"ig-name,omitempty"`
-	QoSEnabledMode	string		`json:"qos-enabled-mode,omitempty"`
-	QoSPolicyID	string		`json:"qos-policy-id,omitempty"`
-        CreatedByExternalClient string        `json:"created-by-external-client,omitempty"`
+	SysID                   interface{} `json:"cluster-id,omitempty"`
+	IgName                  string      `json:"ig-name,omitempty"`
+	QoSEnabledMode          string      `json:"qos-enabled-mode,omitempty"`
+	QoSPolicyID             string      `json:"qos-policy-id,omitempty"`
+	CreatedByExternalClient string      `json:"created-by-external-client,omitempty"`
 }
 
 type PostInitiatorGroupsResp struct {
@@ -917,9 +918,9 @@ func (xms *XMS) PostInitiatorGroups(req *PostInitiatorGroupsReq) (resp *PostInit
 }
 
 type PutInitiatorGroupsReq struct {
-	IgName		string		`json:"new-name,omitempty"`
-	QoSEnabledMode	string		`json:"qos-enabled-mode,omitempty"`
-	QoSPolicyID	string		`json:"qos-policy-id,omitempty"`
+	IgName         string `json:"new-name,omitempty"`
+	QoSEnabledMode string `json:"qos-enabled-mode,omitempty"`
+	QoSPolicyID    string `json:"qos-policy-id,omitempty"`
 }
 
 func (xms *XMS) PutInitiatorGroup(id string, req *PutInitiatorGroupsReq) (err error) {
