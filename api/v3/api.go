@@ -330,7 +330,7 @@ func (xms *XMS) GetInitiatorsConnectivity() (resp *getInitiatorsConnectivityResp
 	return resp, err
 }
 
-//figure out how to get initiator names - from events
+// figure out how to get initiator names - from events
 
 type getVolumeFoldersResp struct {
 	Folders []*Ref `json:"folders"`

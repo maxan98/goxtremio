@@ -6,7 +6,7 @@ type Initiator *xms.Initiator
 type NewInitiatorOptions xms.PostInitiatorsReq
 type NewInitiatorResult *xms.PostInitiatorsResp
 
-//GetInitiator returns a specific initiator by name or ID
+// GetInitiator returns a specific initiator by name or ID
 func (c *Client) GetInitiator(id string, name string) (Initiator, error) {
 	i, err := c.api.GetInitiator(id, name)
 	if err != nil {
@@ -16,7 +16,7 @@ func (c *Client) GetInitiator(id string, name string) (Initiator, error) {
 	return i.Content, nil
 }
 
-//GetInitiators returns a list of initiators
+// GetInitiators returns a list of initiators
 func (c *Client) GetInitiators() (Refs, error) {
 	i, err := c.api.GetInitiators()
 	if err != nil {
@@ -25,7 +25,7 @@ func (c *Client) GetInitiators() (Refs, error) {
 	return i.Initiators, nil
 }
 
-//GetInitiators returns a list of initiators
+// GetInitiators returns a list of initiators
 func (c *Client) GetInitiatorsConnectivity() ([]*xms.InitiatorConnectivity, error) {
 	i, err := c.api.GetInitiatorsConnectivity()
 	if err != nil {
@@ -34,7 +34,7 @@ func (c *Client) GetInitiatorsConnectivity() ([]*xms.InitiatorConnectivity, erro
 	return i.Content, nil
 }
 
-//NewInitiator creates an initiator
+// NewInitiator creates an initiator
 func (c *Client) NewInitiator(opts *NewInitiatorOptions) (NewInitiatorResult, error) {
 	req := xms.PostInitiatorsReq(*opts)
 	res, err := c.api.PostInitiators(&req)
@@ -46,7 +46,7 @@ func (c *Client) NewInitiator(opts *NewInitiatorOptions) (NewInitiatorResult, er
 	return nir, nil
 }
 
-//DeleteInitiator deletes a volume
+// DeleteInitiator deletes a volume
 func (c *Client) DeleteInitiator(id string, name string) error {
 	return c.api.DeleteInitiators(id, name)
 }

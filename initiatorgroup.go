@@ -7,7 +7,7 @@ type NewInitiatorGroupOptions xms.PostInitiatorGroupsReq
 type NewInitiatorGroupResult *xms.PostInitiatorGroupsResp
 type ModifyInitiatorGroupOptions xms.PutInitiatorGroupsReq
 
-//GetInitiatorGroup returns a specific initiator by name or ID
+// GetInitiatorGroup returns a specific initiator by name or ID
 func (c *Client) GetInitiatorGroup(
 	id string, name string) (*InitiatorGroup, error) {
 	ig, err := c.api.GetInitiatorGroup(id, name)
@@ -18,7 +18,7 @@ func (c *Client) GetInitiatorGroup(
 	return &igg, nil
 }
 
-//GetInitiatorGroups returns a list of initiators
+// GetInitiatorGroups returns a list of initiators
 func (c *Client) GetInitiatorGroups() (Refs, error) {
 	ig, err := c.api.GetInitiatorGroups()
 	if err != nil {
@@ -27,7 +27,7 @@ func (c *Client) GetInitiatorGroups() (Refs, error) {
 	return ig.InitiatorGroups, nil
 }
 
-//NewInitiatorGroup creates an IG
+// NewInitiatorGroup creates an IG
 func (c *Client) NewInitiatorGroup(opts *NewInitiatorGroupOptions) (NewInitiatorGroupResult, error) {
 	req := xms.PostInitiatorGroupsReq(*opts)
 	res, err := c.api.PostInitiatorGroups(&req)
@@ -39,7 +39,7 @@ func (c *Client) NewInitiatorGroup(opts *NewInitiatorGroupOptions) (NewInitiator
 	return nigr, nil
 }
 
-//Modify IG
+// Modify IG
 func (c *Client) ModifyInitiatorGroup(id string, opts *ModifyInitiatorGroupOptions) (err error) {
 	req := xms.PutInitiatorGroupsReq(*opts)
 	return c.api.PutInitiatorGroup(id, &req)
